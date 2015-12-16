@@ -13,7 +13,8 @@ public class KodeEditor extends AppCompatActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kode_editor);
         // When Send Kode button is clicked we send the data back to Kustom
-        findViewById(R.id.kode_send).setOnClickListener(this);
+        findViewById(R.id.kode_replace).setOnClickListener(this);
+        findViewById(R.id.kode_append).setOnClickListener(this);
         // Set current text from source activity and change it a bit
         if (getIntent() != null) {
             String text = getIntent().getStringExtra("org.kustom.extra.KODE");
@@ -26,8 +27,11 @@ public class KodeEditor extends AppCompatActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
         Intent i = new Intent();
-        String kode = ((TextView) findViewById(R.id.kode_edit)).getEditableText().toString();
+        //String kode = ((TextView) findViewById(R.id.kode_edit)).getEditableText().toString();
+        String kode = "My edited Kode";
         i.putExtra("org.kustom.KODE", kode);
+        // Weather to append or not result in the calling editor
+        i.putExtra("org.kustom.extra.APPEND", v.getId() == R.id.kode_append);
         setResult(RESULT_OK, i);
         finish();
     }
