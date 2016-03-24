@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.kustom.kodersample">
 
     <application
@@ -16,6 +17,20 @@
                 <action android:name="org.kustom.intent.action.EDIT_KODE" />
             </intent-filter>
         </activity>
+        <!--
+        IMPORTANT!!!
+        CHANGE "android:authorities" to something unique
+        IMPORTANT!!
+        -->
+        <provider
+            android:name=".SampleProvider"
+            android:authorities="whatever.kompany.kodes.sampleprovider"
+            android:exported="true"
+            tools:ignore="ExportedContentProvider">
+            <intent-filter>
+                <action android:name="org.kustom.provider.SAMPLES" />
+            </intent-filter>
+        </provider>
     </application>
 
 </manifest>
